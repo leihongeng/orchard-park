@@ -31,7 +31,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - COMMIT_TAG=$CI_COMMIT_REF_NAME-$(date "+%Y%m%d%H%M%S")
     - DOCKER_IMAGE=$DOCKER_REGISTERIES/$PROJECT_NAME:$COMMIT_TAG
     - docker build -t $DOCKER_IMAGE .
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTERIES
+    - docker login -u $harbor_user -p $harbor_pwd $DOCKER_REGISTERIES
     - docker push $DOCKER_IMAGE
     - docker logout $DOCKER_REGISTERIES
     - docker rmi $DOCKER_IMAGE
