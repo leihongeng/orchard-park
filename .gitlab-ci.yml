@@ -22,7 +22,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 variables:
   PROJECT_NAME: orchard.park.management.api
-  DOCKER_REGISTERIES: harbor.home.aiproject.cn:8443/codecrafters
+  DOCKER_REGISTERIES: harbor.home.aiproject.cn:8443/library
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
