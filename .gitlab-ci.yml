@@ -22,7 +22,7 @@ stages:
   - deploy
 
 variables:
-  DOCKER_REGISTRY: harbor.home.aiproject.cn:8443
+  DOCKER_REGISTRY: https://harbor.home.aiproject.cn:8443
   IMAGE_NAME: codecrafters/orchard.park.management.api
 
 build-job:
