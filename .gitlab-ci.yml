@@ -16,38 +16,32 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-stages:
+stages:          # List of stages for jobs, and their order of execution
   - build
-  - push
   - deploy
 
 variables:
-  DOCKER_REGISTRY: harbor.home.aiproject.cn:8443
-  IMAGE_NAME: codecrafters/orchard.park.management.api
+  PROJECT_NAME: orchard.park.management.api
+  DOCKER_REGISTERIES: harbor.home.aiproject.cn:8443/codecrafters
 
-build-job:
+build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - echo "Compiling the code..."
-    - docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:${CI_COMMIT_REF_NAME} .
-    - echo "Compile complete."
+    - COMMIT_TAG=$CI_COMMIT_REF_NAME-$(date "+%Y%m%d%H%M%S")
+    - DOCKER_IMAGE=$DOCKER_REGISTERIES/$PROJECT_NAME:$COMMIT_TAG
+    - docker build -t $DOCKER_IMAGE .
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $DOCKER_REGISTERIES
+    - docker push $DOCKER_IMAGE
+    - docker logout $DOCKER_REGISTERIES
+    - docker rmi $DOCKER_IMAGE
+    - echo "Docker image successfully pushed."
 
-push-job:
-  stage: push
-  script:
-    - echo "Logging in to Docker registry..."
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin https://$DOCKER_REGISTRY
-    - echo "Pushing Docker image..."
-    - TIMESTAMP=$(date +%Y%m%d%H%M%S)
-    - TAG=${CI_COMMIT_REF_NAME}-$TIMESTAMP
-    - docker tag $DOCKER_REGISTRY/$IMAGE_NAME:${CI_COMMIT_REF_NAME} $DOCKER_REGISTRY/$IMAGE_NAME:$TAG
-    - docker push $DOCKER_REGISTRY/$IMAGE_NAME:$TAG
-    - echo "Docker image pushed successfully."
-
-deploy-job:
-  stage: deploy
+deploy-job:      # This job runs in the deploy stage.
+  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
   environment: production
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+
 
