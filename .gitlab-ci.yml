@@ -16,21 +16,38 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-stages:          # List of stages for jobs, and their order of execution
+stages:
   - build
+  - push
   - deploy
 
-build-job:       # This job runs in the build stage, which runs first.
+variables:
+  DOCKER_REGISTRY: harbor.home.aiproject.cn:8443
+  IMAGE_NAME: codecrafters/orchard.park.management.api
+
+build-job:
   stage: build
   script:
     - echo "Compiling the code..."
-    - docker build .
+    - docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:${CI_COMMIT_REF_NAME} .
     - echo "Compile complete."
 
+push-job:
+  stage: push
+  script:
+    - echo "Logging in to Docker registry..."
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $DOCKER_REGISTRY
+    - echo "Pushing Docker image..."
+    - TIMESTAMP=$(date +%Y%m%d%H%M%S)
+    - TAG=${CI_COMMIT_REF_NAME}-$TIMESTAMP
+    - docker tag $DOCKER_REGISTRY/$IMAGE_NAME:${CI_COMMIT_REF_NAME} $DOCKER_REGISTRY/$IMAGE_NAME:$TAG
+    - docker push $DOCKER_REGISTRY/$IMAGE_NAME:$TAG
+    - echo "Docker image pushed successfully."
 
-deploy-job:      # This job runs in the deploy stage.
-  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+deploy-job:
+  stage: deploy
   environment: production
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+
