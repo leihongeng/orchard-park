@@ -22,7 +22,7 @@ stages:
   - deploy
 
 variables:
-  DOCKER_REGISTRY: https://harbor.home.aiproject.cn:8443
+  DOCKER_REGISTRY: harbor.home.aiproject.cn:8443
   IMAGE_NAME: codecrafters/orchard.park.management.api
 
 build-job:
@@ -36,7 +36,7 @@ push-job:
   stage: push
   script:
     - echo "Logging in to Docker registry..."
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $DOCKER_REGISTRY
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin https://$DOCKER_REGISTRY
     - echo "Pushing Docker image..."
     - TIMESTAMP=$(date +%Y%m%d%H%M%S)
     - TAG=${CI_COMMIT_REF_NAME}-$TIMESTAMP
