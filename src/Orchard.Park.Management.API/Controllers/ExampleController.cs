@@ -13,10 +13,12 @@ namespace Orchard.Park.Management.API.Controllers;
 public class ExampleController : BaseController
 {
     private readonly IJwtService _jwtService;
+    private readonly ICurrentUser _currentUser;
 
-    public ExampleController(IJwtService jwtService)
+    public ExampleController(IJwtService jwtService, ICurrentUser currentUser)
     {
         _jwtService = jwtService;
+        _currentUser = currentUser;
     }
 
     [HttpGet]
@@ -35,6 +37,10 @@ public class ExampleController : BaseController
     [HttpGet]
     public IActionResult Test()
     {
+        //获取当前登录用户
+        var userId = _currentUser.GetUserId();
+
+        //生成一个雪花Id
         var id = IdHelper.CreateLongId();
 
         throw new FriendlyException("这是一个异常");
