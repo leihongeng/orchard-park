@@ -61,28 +61,7 @@ public enum FriendlyExceptionStatusCodeEnum
     Token = 401,
 
     /// <summary>
-    /// 答复超时
-    /// </summary>
-    ReplyTimeout = 40001,
-
-    /// <summary>
     /// 参数错误
     /// </summary>
-    Params = 406,
-
-    /// <summary>
-    /// 未插枪
-    /// </summary>
-    NotConnected = 40002,
-
-    /// <summary>
-    /// 充电结束
-    /// 需要拔枪后再重新启动
-    /// </summary>
-    ChargingCompleted = 40003,
-
-    /// <summary>
-    /// 存在超时占位费
-    /// </summary>
-    HasIllegalParkingOrder = 40004
+    Params = 403
 }

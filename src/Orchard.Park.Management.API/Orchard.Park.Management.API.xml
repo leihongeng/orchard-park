@@ -16,6 +16,11 @@
             生成数据库表实体
             </summary>
         </member>
+        <member name="M:Orchard.Park.Management.API.Controllers.CodeGeneratorController.#ctor(Orchard.Park.IService.CodeGenerator.ICodeGeneratorService)">
+            <summary>
+            生成数据库表实体
+            </summary>
+        </member>
         <member name="M:Orchard.Park.Management.API.Controllers.CodeGeneratorController.CodeGenDown">
             <summary>
             生成代码
