@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Orchard.Park.CodeGenerator\Orchard.Park.CodeGenerator.csproj" />
+    <ProjectReference Include="..\Orchard.Park.IRepository\Orchard.Park.IRepository.csproj" />
+  </ItemGroup>
+
+</Project>

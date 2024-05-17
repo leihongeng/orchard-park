@@ -1,6 +1,0 @@
-@Orchard.Park.Management.API_HostAddress = http://localhost:5095
-
-GET {{Orchard.Park.Management.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orchard.Park.Management.API</name>
+    </assembly>
+    <members>
+        <member name="M:Orchard.Park.Management.API.Configure.ServiceCollectionExtension.Build(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            配置服务
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:Orchard.Park.Management.API.Controllers.CodeGeneratorController">
+            <summary>
+            生成数据库表实体
+            </summary>
+        </member>
+        <member name="M:Orchard.Park.Management.API.Controllers.CodeGeneratorController.CodeGenDown">
+            <summary>
+            生成代码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orchard.Park.Management.API.Controllers.ExampleController">
+            <summary>
+            示例
+            </summary>
+        </member>
+    </members>
+</doc>

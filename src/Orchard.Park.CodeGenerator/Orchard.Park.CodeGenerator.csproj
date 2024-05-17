@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="CrudTemplete\DbModel\Model.tpl" />
+    <EmbeddedResource Include="CrudTemplete\Repositories\IRepository.tpl" />
+    <EmbeddedResource Include="CrudTemplete\Repositories\Repository.tpl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotLiquid" Version="2.2.692" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Orchard.Park.SqlSugar\Orchard.Park.SqlSugar.csproj" />
+  </ItemGroup>
+
+</Project>

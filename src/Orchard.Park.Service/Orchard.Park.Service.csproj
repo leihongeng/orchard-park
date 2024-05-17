@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Orchard.Park.AspNetCore\Orchard.Park.AspNetCore.csproj" />
+    <ProjectReference Include="..\Orchard.Park.IService\Orchard.Park.IService.csproj" />
+    <ProjectReference Include="..\Orchard.Park.Repository\Orchard.Park.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
