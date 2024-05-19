@@ -6,11 +6,11 @@ WORKDIR /src
 COPY . .
 
 # 构建项目
-RUN dotnet build "src/Orchard.Park.Management.API.csproj" -c Release -o /app/build
+RUN dotnet build "Orchard.Park.Management.API.csproj" -c Release -o /app/build
 
 # 发布项目
 FROM build AS publish
-RUN dotnet publish "src/Orchard.Park.Management.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "Orchard.Park.Management.API.csproj" -c Release -o /app/publish
 
 # 最终镜像
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
