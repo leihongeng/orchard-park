@@ -28,6 +28,7 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - echo "Compiling the code..."
+    - cd ./src/Orchard.Park.Management.API
     - COMMIT_TAG=$CI_COMMIT_REF_NAME-$(date "+%Y%m%d%H%M%S")
     - DOCKER_IMAGE=$DOCKER_REGISTERIES/$PROJECT_NAME:$COMMIT_TAG
     - docker build -t $DOCKER_IMAGE .
